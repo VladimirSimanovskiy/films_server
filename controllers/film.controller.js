@@ -124,8 +124,6 @@ class FilmController {
 
   async deleteFilm(req, res) {
     const id = req.params.id;
-    //const filmName = await db.query(
-    //  `SELECT film_name FROM film WHERE film_id = ${id}`);
     const film = await db.query(
       'DELETE FROM film WHERE film_id = $1 RETURNING *', [id]);
     res.json(film.rows[0]);
